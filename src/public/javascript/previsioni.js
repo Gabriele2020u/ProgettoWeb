@@ -2,7 +2,9 @@ var lon;
 var lat;
 var nomecitta;
 
+//METODI DI SUPPORTO
 
+//controllo  il controllo del json
 function isEmpty(obj) {
     return Object.keys(obj).length === 0;
 }
@@ -13,31 +15,67 @@ async function eseguefetch (url) {
   };
 
 
+ //funzione per settare l'immagine di sfondo se possibile 
+async function   settaImmagine (citta){
 
+    let link =  await  eseguefetch(`/api/immagine/${citta}`);
+    if(!isEmpty(link)  && link.total != 0){
+
+      
+      let imagelink = link.results[0].urls.full;
+      console.log(imagelink);
+      let stringa = "url(" + imagelink +  ")";
+      
+
+      document.getElementById("main").style.backgroundSize = "cover";
+      document.getElementById("main").style.backgroundRepeat = "no-repeat";
+      document.getElementById("main").style.backgroundImage = stringa;
+      //document.getElementsByClassName('background-image').style.height = "50vh";
+      //document.getElementById('foto').setAttribute("src",imagelink);
+      //document.body.style.backgroundImage = "url(`${imagelink}`)";
+        
+    }
+    else{
+
+        document.getElementById("main").style.backgroundColor = "rgba(39, 226, 245, 0.8)";
+    }
+    
+   
+}
+
+//////
 
 async function cercacitta (citta){
 
 
     let posizione =  await eseguefetch(`/api/posizionecitta/${citta}`);
-    console.log(posizione);
+    
     if(isEmpty(posizione) || posizione[0].name === undefined){
-        document.getElementById('nomecitta').innerText = "citta non trovata";     
+        
+      document.getElementById('nometitolo').innerText = "citta non trovata"; 
+            
     }
     else {
-        var nomecitta = posizione[0].citta;
+        var nomecitta = citta;
         var lat = posizione[0].lat;
         var lon = posizione[0].lon;
+      document.getElementById("nometitolo").innerText =  nomecitta.toUpperCase();
 
+
+      let previsione =  await eseguefetch(`/api/previsione/${lat}/${lon}`);
+
+      //document.getElementById('temperatura').innerText = previsione.list[0].main.temp  + ' °C';
 
     // inserisce tutti i dati meteo nella vista in previsioni.html
-      document.getElementById('temp').innerText = 'Temperatura: ' + weatherResponse.main.temp + ' °C';
+ /*     document.getElementById('temp').innerText = 'Temperatura: ' + weatherResponse.main.temp + ' °C';
       document.getElementById('temp-maxmin').innerText = 
         'Temperatura (massima e minima): ' + weatherResponse.main.temp_max + ' - ' + weatherResponse.main.temp_min + ' °C';
       document.getElementById('temp-perc').innerText = 'Temperatura percepita: ' + weatherResponse.main.feels_like + ' °C';
       document.getElementById('hum').innerText = 'Umidità: ' + weatherResponse.main.humidity;
       document.getElementById('descr').innerText = 'Descrizione: ' + weatherResponse.weather[0].description;
       document.getElementById('wind').innerText = 'Vento: ' + weatherResponse.wind.speed + ' Km/H';
-        document.getElementById('lon').innerText = 'lon: ' + lon;   
+        document.getElementById('lon').innerText = 'lon: ' + lon;   */
+        settaImmagine(nomecitta);
     }
    // let risposta =  await fetch(`/api/posizionecitta/${citta}`);
    // let posizione  = await risposta.json();
@@ -57,14 +95,10 @@ async function cercacitta (citta){
 //metodo che viene eseguito al caricamento della pagina
 document.addEventListener('DOMContentLoaded', async () => {
     
-    document.getElementById('lon').innerText = 'lon: ' ; 
 
     const parametri = new URLSearchParams(window.location.search);
     const citta = parametri.get("nomecitta");
-    console.log(citta);
-    
-    
-   // if (city !== null) {
+    if (citta !== null) 
       cercacitta(citta);
    /* } else {
       navigator.permissions.query({name:'geolocation'}).then(function(result) {

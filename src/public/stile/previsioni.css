@@ -1,0 +1,37 @@
+
+
+#nometitolo {
+    
+    text-align: center;
+    font-size: 500%; 
+    color: aliceblue;
+    background-color: black;
+    opacity: 60%;
+}
+
+.titolo {
+    background-color: "rgba(39, 226, 245, 0.8)" ;
+}
+.w3-tag{
+    opacity: 60%;
+}
+
+
+.info {
+    
+    text-align: center;
+    font-size: 500%; 
+    color: aliceblue;
+    background-color: black;
+    opacity: 60%;
+}
+
+
+/*
+.backgroundimage{
+
+        background-image: url(http://www.w3.org/2008/site/images/logo-w3c-screen-lg);
+        background-size: cover;
+        background-repeat: no-repeat;
+        height: 100vh;
+}*/

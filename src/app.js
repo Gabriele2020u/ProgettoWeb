@@ -3,8 +3,10 @@ const axios = require("axios");
 const path = require('path');
 //const bodyParser = require('body-parser');
 const Port = 3000;
-const ApiKey =  "05caabeb67f1805702d928cea439d2d6";
+const Keyweather =  "05caabeb67f1805702d928cea439d2d6";
+const lingua = "it";
 const app = express();
+const KeyUnsplash = "L6evowfp3gYUNzs2igzmp5CNLrmRVA_G5xLEDx_Xeds";
 
 
 
@@ -32,7 +34,7 @@ app.get('/', (req, res) => {
     res.render('index.html')
   })
 
-  // chiamate API
+  //  CHIAMATE API
 
   //data una citta si ottiene la posizione in latitudine e longitudine
   app.get('/api/posizionecitta/:citta', (req, res) => {
@@ -40,24 +42,37 @@ app.get('/', (req, res) => {
 
     const citta = req.params.citta;
     
-    axios.get(`https://api.openweathermap.org/geo/1.0/direct?q=${citta}&limit=1&appid=${ApiKey}`)
+    axios.get(`https://api.openweathermap.org/geo/1.0/direct?q=${citta}&lang=${lingua}&limit=1&appid=${Keyweather}`)
       .then((posizione) => res.send(posizione.data))  
       .catch((err) => res.json({error: `Città non trovata, Info: ${err}`}));  
 
   });
 
   
-    //data una citta si ottiene la posizione in latitudine e longitudine
-    app.get('/api/posizionecitta/:citta', (req, res) => {
+    //data lon e lat ritorna il meteo della citta
+    app.get('/api/previsione/:lat/:lon', (req, res) => {
 
-
-      const citta = req.params.citta;
+      const lon = req.params.lon;
+      const lat = req.params.lat;
       
-      axios.get(`https://api.openweathermap.org/geo/1.0/direct?q=${citta}&limit=1&appid=${ApiKey}`)
-        .then((posizione) => res.send(posizione.data))  
-        .catch((err) => res.json({error: `Città non trovata, Info: ${err}`}));  
+      axios.get(`https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&units=metric&lang=${lingua}&appid=${Keyweather}`)
+        .then((temperatura) => res.send(temperatura.data))  
+        .catch((err) => res.json({error: `previsione non trovata, Info: ${err}`}));  
   
     });
+
+
+
+    //data il nome di una citta restituisce un link di una sua immagine
+      app.get('/api/immagine/:citta', (req, res) => {
+
+          const citta= req.params.citta;
+          
+          axios.get(`https://api.unsplash.com/search/photos?query=${citta}&orientation=landscape&client_id=${KeyUnsplash}`)
+            .then((risposta) => res.send(risposta.data))  
+            .catch((err) => res.json({error: `foto non trovata, Info: ${err}`}));  
+      
+        });
 
 
 
