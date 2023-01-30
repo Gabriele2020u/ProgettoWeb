@@ -3,27 +3,58 @@
 #nometitolo {
     
     text-align: center;
-    font-size: 500%; 
-    color: aliceblue;
+    font-size: 500%;
+    color: white;
     background-color: black;
-    opacity: 60%;
+    opacity: 70%;
 }
 
-.titolo {
-    background-color: "rgba(39, 226, 245, 0.8)" ;
+.cerchio {
+
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  background: black;
+  opacity: 70%;
+    line-height: 0;
+    position: centered;
+   position: relative;
 }
-.w3-tag{
-    opacity: 60%;
+
+#temperatura {
+
+  position: absolute;
+  bottom: 50%;
+  width: 100%;
+  color: white;
+  text-align: center;
+  font-size: 250%;
+
+}
+
+
+.main{
+    background-image: url("../images/SfondoPrevisioni.jpg");
+
 }
 
 
 .info {
     
     text-align: center;
-    font-size: 500%; 
-    color: aliceblue;
+    font-size: 200%;
+    color: white;
     background-color: black;
-    opacity: 60%;
+    opacity: 70%;
+}
+
+.giorni {
+
+    text-align: center;
+    font-size: 200%;
+    color: white;
+    background-color: black;
+    opacity: 70%;
 }
 
 
@@ -34,4 +65,4 @@
         background-size: cover;
         background-repeat: no-repeat;
         height: 100vh;
-}*/
+}*

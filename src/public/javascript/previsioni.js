@@ -1,6 +1,8 @@
 var lon;
 var lat;
 var nomecitta;
+var oggi;
+const giorni = ['Domenica', 'Lunedi', 'Martedi', 'Mercoledi', 'Giovedi', 'Venerdi', 'Sabato'];
 
 //METODI DI SUPPORTO
 
@@ -27,13 +29,9 @@ async function   settaImmagine (citta){
       let stringa = "url(" + imagelink +  ")";
       
 
-      document.getElementById("main").style.backgroundSize = "cover";
-      document.getElementById("main").style.backgroundRepeat = "no-repeat";
-      document.getElementById("main").style.backgroundImage = stringa;
-      //document.getElementsByClassName('background-image').style.height = "50vh";
-      //document.getElementById('foto').setAttribute("src",imagelink);
-      //document.body.style.backgroundImage = "url(`${imagelink}`)";
-        
+      document.getElementById("container").style.backgroundSize = "cover";
+      document.getElementById("container").style.backgroundRepeat = "no-repeat";
+      document.getElementById("container").style.backgroundImage = stringa;
     }
     else{
 
@@ -61,24 +59,30 @@ async function cercacitta (citta){
         var lon = posizione[0].lon;
       document.getElementById("nometitolo").innerText =  nomecitta.toUpperCase();
 
-
+////////////////////////////NON CONTROLLO CHE ABBIA PREVISIONI VALIDA
       let previsione =  await eseguefetch(`/api/previsione/${lat}/${lon}`);
 
-      //document.getElementById('temperatura').innerText = previsione.list[0].main.temp  + ' °C';
+      document.getElementById('temperatura').innerText = previsione.list[0].main.temp  + ' °C';
+      document.getElementById('temp-percepita').innerText =  "temperatura percepita: " + previsione.list[0].main.feels_like + ' °C';
+      document.getElementById('umidita').innerText = 'Umidità: ' + previsione.list[0].main.humidity + ' %' ;
+      document.getElementById('descrizione').innerText = 'Descrizione: ' + previsione.list[0].weather[0].description;
+      document.getElementById('vento').innerText = 'Vento: ' + previsione.list[0].wind.speed + ' Km/H';
+      document.getElementById('prob').innerText = 'Precipitazioni: ' + Math.round(previsione.list[0].pop * 100)  + ' %';
 
-    // inserisce tutti i dati meteo nella vista in previsioni.html
- /*     document.getElementById('temp').innerText = 'Temperatura: ' + weatherResponse.main.temp + ' °C';
-      document.getElementById('temp-maxmin').innerText = 
-        'Temperatura (massima e minima): ' + weatherResponse.main.temp_max + ' - ' + weatherResponse.main.temp_min + ' °C';
-      document.getElementById('temp-perc').innerText = 'Temperatura percepita: ' + weatherResponse.main.feels_like + ' °C';
-      document.getElementById('hum').innerText = 'Umidità: ' + weatherResponse.main.humidity;
-      document.getElementById('descr').innerText = 'Descrizione: ' + weatherResponse.weather[0].description;
-      document.getElementById('wind').innerText = 'Vento: ' + weatherResponse.wind.speed + ' Km/H';
-        document.getElementById('lon').innerText = 'lon: ' + lon;   */
-        settaImmagine(nomecitta);
+
+      ////////////////////// settimana display
+
+      const data = new Date(previsione.list[0].dt_txt);
+      var oggi = data.getDay();
+      document.getElementById('giorno2').innerText =  giorni[(oggi+1)%7] + ":   temperatura: " + previsione.list[8].main.temp + "c°    " + " precipitazioni: " +  Math.round(previsione.list[8].pop * 100) +" %";
+      document.getElementById('giorno3').innerText =  giorni[(oggi+2)%7] + ":   temperatura: " + previsione.list[16].main.temp + "c°    " + " precipitazioni: " +  Math.round(previsione.list[16].pop * 100) +" %";
+      document.getElementById('giorno4').innerText =  giorni[(oggi+3)%7] + ":   temperatura: " + previsione.list[24].main.temp + "c°    " + " precipitazioni: " +  Math.round(previsione.list[24].pop * 100) +" %";
+
+
+
     }
-   // let risposta =  await fetch(`/api/posizionecitta/${citta}`);
-   // let posizione  = await risposta.json();
+
+
 /*
     if (risposta.name === undefined) {
         document.getElementById('pos').innerText = 'Posizione: Sconosciuta';
@@ -98,8 +102,11 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     const parametri = new URLSearchParams(window.location.search);
     const citta = parametri.get("nomecitta");
-    if (citta !== null) 
-      cercacitta(citta);
+    if (citta !== null) {
+
+        cercacitta(citta);
+        settaImmagine(citta);
+       }
    /* } else {
       navigator.permissions.query({name:'geolocation'}).then(function(result) {
         if (result.state === 'granted') {

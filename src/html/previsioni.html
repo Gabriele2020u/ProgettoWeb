@@ -7,7 +7,15 @@
 
       <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
       <link rel="stylesheet" type="text/css" href="stile/previsioni.css"/>
-      <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+      <link rel="stylesheet" type="text/css" href="stile/main.css"/>
+      <link
+              rel="stylesheet"
+              href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+              integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+              crossorigin=""
+      />
+
+
       <title>smartmeteo</title>
       
       
@@ -34,8 +42,17 @@
           </li>
         </ul>
       </div>
-  
-      <!-- modifico la action RICERCA  NAVBAR-->
+<!--  TOOGLE DARK MODE   -->
+      <div class="d-flex dark-mode-toggle">
+        <span class="toggle-icons">☀️</span>
+        <label class="switch">
+          <input type="checkbox" id="darkModeToggle" onclick="checkTheme()">
+          <span class="slider round"></span>
+        </label>
+        <span class="toggle-icons">🌙</span>
+      </div>
+
+      <!--  RICERCA  NAVBAR-->
       <form action="/previsioni" method="GET">
         <div class="form-group d-flex justify-content-center flex-sm-row flex-column">
           <div class="centered-item">
@@ -66,38 +83,54 @@
   </titolo>
 -->
 
-<main  >
+<main  class ="main">
 
+  <!--  CONTAINER -->
 
+  <div class="container" id="container" >
 
-    <div class="container" id="main" >
-      <div class="row">  <h1 id="nometitolo" >  </h1> 
+    <!-- riga titolo -->
+      <div class="row">  <h1 id="nometitolo" >  </h1>  </div>
+
+    <div class="row">
+
+    <!--  container in alto a sinistra -->
         <div class="col">
-        <span class="w3-tag w3-jumbo w3-black">     temperatura: 50 c   </span>
+          <div class="cerchio" >
+                  <div
+                    id ="temperatura">
+                  </div>
+          </div>
         </div>
+
+        <!--  container in alto a destra -->
         <div class="col">   </div>
         <div class="w-100"></div>
+
         <div class="col">   </div>
+        <!--  container in basso a sinistra -->
         <div class="col">
-         <span class="w3-tag"> temperatura: 50 c 
-            
-          <h1>   ciao </h1>
-          <h1>   ciao </h1>
-          <h1>   ciao </h1>
-          <h1>   ciao </h1>
-          <h1>   ciao </h1>
-          <h1>   ciao </h1>
-          <h1>   ciao </h1>
-          <h1>   ciao </h1>
-          <h1>   ciao </h1>
-          <h1>   ciao </h1>
-          <h1>   ciao </h1>
-          <h1>   ciao </h1>
-          
-          </span>
+     <!--  container in basso a destra -->
+         <div class="info">
+
+           <p id="temp-percepita">Percepita: </p>
+           <p id="umidita">Umidità: </p>
+           <p id="descrizione">Descrizione: </p>
+           <p id="vento">Vento: </p>
+           <p id="prob">Precipitazioni: </p>
+
+
+          </div>
         </div>
-      </div>
     </div>
+    <!-- giorni successivi  -->
+
+    <div class="info">
+      <p id="giorno2" > ...  </p>
+      <p id="giorno3" > ... </p>
+      <p id="giorno4" > ...  </p>
+
+  </div>
 
 </main>
   <!-- SEZIONE   Footer -->
@@ -106,9 +139,13 @@
     <p>progetto di &copy; Copyright Gabriele dino/Francesco Fontana - smartmeteo 2023</p>
   </footer>
 
-   
 
-
+<!-- SEZIONE SCRIPT  -->
+   <script
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
+        crossorigin="anonymous"
+    ></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
     <script src="javascript/previsioni.js"></script>
 
