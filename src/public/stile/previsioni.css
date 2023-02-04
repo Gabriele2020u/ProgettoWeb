@@ -1,5 +1,4 @@
 
-
 #nometitolo {
     
     text-align: center;
@@ -9,7 +8,7 @@
     opacity: 70%;
 }
 
-.cerchio {
+#cerchio {
 
   width: 200px;
   height: 200px;
@@ -38,17 +37,47 @@
 
 }
 
-
+/*
 .info {
     
     text-align: center;
     font-size: 200%;
-    color: white;
-    background-color: black;
     opacity: 70%;
 }
 
-.giorni {
+
+.white{
+  
+  color: black;
+  background-color: white;
+}
+
+.dark{
+  
+  color: white;
+  background-color: black;
+}*/
+
+.darkinfo {
+    
+  text-align: center;
+  font-size: 200%;
+  color: white;
+  background-color: black;
+  opacity: 80%;
+}
+
+.whiteinfo {
+    
+  text-align: center;
+  font-size: 200%;
+  color: black;
+  background-color: white;
+  opacity: 80%;
+}
+
+/*
+.giorni_black {
 
     text-align: center;
     font-size: 200%;
@@ -58,11 +87,11 @@
 }
 
 
-/*
-.backgroundimage{
+.giorni_white {
 
-        background-image: url(http://www.w3.org/2008/site/images/logo-w3c-screen-lg);
-        background-size: cover;
-        background-repeat: no-repeat;
-        height: 100vh;
-}*
+  text-align: center;
+  font-size: 200%;
+  color: black;
+  background-color: white;
+  opacity: 70%;
+}*/
