@@ -16,17 +16,24 @@ function checkTheme () {
 function attivaDarkMode () {
 
 
+
+    document.querySelectorAll('.white').forEach((element) => {
+    
+        element.className = element.className.replace( 'white', 'dark');
+      });
+
     //cambia  la navbar e il footer di colore
     document.querySelectorAll('.bg-light').forEach((element) => {
     
         element.className = element.className.replace(/-light/g, '-dark');
       });
   
+/*
          // modifica il colore del cerchio
          let cerchio = document.getElementById("cerchio");
          if(cerchio != null ){
             cerchio.style.background = "black";
-         }
+         }*/
 
  
     //cambio colore info e giorni (testi e sfondi row del container)
@@ -35,8 +42,7 @@ function attivaDarkMode () {
     element.className = element.className.replace( 'whiteinfo', 'darkinfo');
   });
       
-     //cambio colore testo footer
-     document.getElementById("footer").style.color = "white";
+  
   
     // salvo il nuovo valore
     const   darkTheme = true;
@@ -52,23 +58,24 @@ function attivaDarkMode () {
 function attivaLightMode () {
 
 
+
+    document.querySelectorAll('.dark').forEach((element) => {
+    
+        element.className = element.className.replace( 'dark', 'white');
+      });
+
     //cambia navbar e footer di colore
     document.querySelectorAll('.bg-dark').forEach((element) => {
       element.className = element.className.replace(/-dark/g, '-light');
     });
-  
+
+
    // modifica il colore del cerchio
-   let titolo = document.getElementById("titolo");
-   if(cerchio != null ){
-      cerchio.style.background = "white";
-   }
+  document.querySelectorAll('.darktitle').forEach((element) => {
+    
+    element.className = element.className.replace( 'darktitle', 'whitetitle');
+  });
 
-
-    // modifica il colore del cerchio
-    let cerchio = document.getElementById("cerchio");
-    if(cerchio != null ){
-       cerchio.style.background = "white";
-    }
 
    //cambio colore info e giorni (testi e sfondi row del container)
    document.querySelectorAll('.darkinfo').forEach((element) => {
@@ -77,14 +84,11 @@ function attivaLightMode () {
   });
 
 
-        //cambio colore testo footer
-        document.getElementById("footer").style.color = "black";
   
     // salvo il nuovo valore
     const   darkTheme = false;
-    
-  
     localStorage.setItem('darkMode', JSON.stringify(darkTheme));
+
   }
   
 

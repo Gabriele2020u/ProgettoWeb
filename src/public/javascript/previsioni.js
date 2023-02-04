@@ -41,7 +41,7 @@ async function   settaImmagine (citta){
    
 }
 
-//////
+
 
 async function cercacitta (citta){
 

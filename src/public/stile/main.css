@@ -67,3 +67,10 @@ input:checked + .slider:before {
   border-radius: 50%;
 }
 
+.nomesito{
+  font-size: 150%;
+}
+
+.footertesto{
+  font-size: 150%;
+}

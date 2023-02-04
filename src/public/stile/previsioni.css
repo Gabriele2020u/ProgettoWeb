@@ -3,8 +3,6 @@
     
     text-align: center;
     font-size: 500%;
-    color: white;
-    background-color: black;
     opacity: 70%;
 }
 
@@ -13,7 +11,6 @@
   width: 200px;
   height: 200px;
   border-radius: 50%;
-  background: black;
   opacity: 70%;
     line-height: 0;
     position: centered;
@@ -25,11 +22,12 @@
   position: absolute;
   bottom: 50%;
   width: 100%;
-  color: white;
   text-align: center;
   font-size: 250%;
 
 }
+
+
 
 
 .main{
@@ -37,61 +35,19 @@
 
 }
 
-/*
 .info {
     
-    text-align: center;
-    font-size: 200%;
-    opacity: 70%;
-}
-
-
-.white{
-  
-  color: black;
-  background-color: white;
+  text-align: center;
+  font-size: 200%;
+  opacity: 80%;
 }
 
 .dark{
-  
   color: white;
   background-color: black;
-}*/
-
-.darkinfo {
-    
-  text-align: center;
-  font-size: 200%;
-  color: white;
-  background-color: black;
-  opacity: 80%;
 }
 
-.whiteinfo {
-    
-  text-align: center;
-  font-size: 200%;
+.white{
   color: black;
   background-color: white;
-  opacity: 80%;
 }
-
-/*
-.giorni_black {
-
-    text-align: center;
-    font-size: 200%;
-    color: white;
-    background-color: black;
-    opacity: 70%;
-}
-
-
-.giorni_white {
-
-  text-align: center;
-  font-size: 200%;
-  color: black;
-  background-color: white;
-  opacity: 70%;
-}*/
