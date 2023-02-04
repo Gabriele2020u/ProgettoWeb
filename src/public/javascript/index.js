@@ -5,30 +5,32 @@ var lat;
 var nomecitta;
 
 async function showInfo (){
+    console.log("sono qui");
 
-
-    let posizione =  await eseguefetch(`/api/posizionecitta/Milano`);
-    
-    if(isEmpty(posizione) || posizione[0].name === undefined){
+    let posizione_milano =  await eseguefetch(`/api/posizionecitta/Milano`);
+    let posizione_roma =  await eseguefetch(`/api/posizionecitta/Roma`);
+    let posizione_napoli =  await eseguefetch(`/api/posizionecitta/Napoli`);
         
-     console.log("citta non trovata"); 
-            
-    }
-    else {
-//      var nomecitta = citta;
-        var lat = posizione[0].lat;
-        var lon = posizione[0].lon;
-        console.log(lat,lon);
-//      document.getElementById("nometitolo").innerText =  nomecitta.toUpperCase();
-
+        var lat_m = posizione_milano[0].lat;
+        var lon_m = posizione_milano[0].lon;
+        var lat_r = posizione_roma[0].lat;
+        var lon_r = posizione_roma[0].lon;
+        var lat_n = posizione_napoli[0].lat;
+        var lon_n = posizione_napoli[0].lon;
+    
 ////////////////////////////NON CONTROLLO CHE ABBIA PREVISIONI VALIDA
-      let previsione =  await eseguefetch(`/api/previsione/${lat}/${lon}`);
-        console.log("sono qui");
-      document.getElementById('temp-napoli').innerText = previsione.list[0].main.temp  + ' °C';
-      document.getElementById('temp-miano').innerText = previsione.list[0].main.temp  + ' °C';
-      document.getElementById('temp-roma').innerText = previsione.list[0].main.temp  + ' °C';
-      document.getElementById('descrizione').innerText = previsione.list[0].weather[0].description;
-    }
+      let previsione_m =  await eseguefetch(`/api/previsione/${lat_m}/${lon_m}`);
+      let previsione_r =  await eseguefetch(`/api/previsione/${lat_r}/${lon_r}`);
+      let previsione_n =  await eseguefetch(`/api/previsione/${lat_n}/${lon_n}`);
+
+      document.getElementById('temp-milano').innerText = 'Temperatura: ' + previsione_m.list[0].main.temp  + ' °C';
+      document.getElementById('temp-roma').innerText = 'Temperatura: ' + previsione_r.list[0].main.temp  + ' °C';
+      document.getElementById('temp-napoli').innerText = 'Temperatura: ' + previsione_n.list[0].main.temp  + ' °C';
+
+      document.getElementById('descriz-m').innerText = 'Descrizione: ' + previsione_m.list[0].weather[0].description;
+      document.getElementById('descriz-r').innerText = 'Descrizione: ' + previsione_r.list[0].weather[0].description;
+      document.getElementById('descriz-n').innerText = 'Descrizione: ' + previsione_n.list[0].weather[0].description;
+
 }
 
 //METODI DI SUPPORTO
@@ -48,7 +50,7 @@ async function eseguefetch (url) {
 
   //metodo che viene eseguito al caricamento della pagina
 document.addEventListener('DOMContentLoaded', async () => {
-    
+    console.log("sono qui");
     showInfo();
    // showInfo("Roma");
    // showInfo("Napoli");
