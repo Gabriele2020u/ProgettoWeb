@@ -20,28 +20,54 @@ async function eseguefetch (url) {
 ///////////////////////////////////////////////////////////////
 
 
- // Funzione riempie con la posizione della localizzazione
-function geoloc() {
+ // Funzione che riempie i dati con la geolocalizzazione
+function datiGeolocalizzazione() {
+
     navigator.geolocation.getCurrentPosition(function (position) {
 
        lon = position.coords.longitude;
        lat = position.coords.latitude;
-      settaDati(lat,lon)
-      settaImmagine(citta)
+
+       settaDati(lat,lon , settaImmagine);
       
   },
   function (error) {
+
     document.getElementById("nometitolo").innerText =  "posizione negata";
-    nomecitta = "inesistente";
+    
   })
+}
+
+
+//funzione che  popola  la pagina data una citta
+async function  datiNome (citta)  {
+  
+  let posizione =   await eseguefetch(`/api/posizionecitta/${citta}`);
+
+    
+  if(  posizione[0]  !== undefined ){
+        
+          lat = posizione[0].lat;
+          lon = posizione[0].lon;
+  
+      settaImmagine(citta);
+      settaDati(lat,lon);
+  }else {
+
+        nomecitta = "inesistente";
+        settaImmagine("nomecitta");
+        document.getElementById("nometitolo").innerText =  "citta non trovata";
+        
+  }
+
 }
 
  //funzione per settare l'immagine di sfondo se possibile 
 async function   settaImmagine (citta){
 
     let link =  await  eseguefetch(`/api/immagine/${citta}`);
-    if(!isEmpty(link)  && link.total != 0){
 
+    if  (!isEmpty(link)  && link.total != 0 && citta != "inesistente"  ) {
       
         imagelink = link.results[0].urls.full;
     
@@ -59,35 +85,18 @@ async function   settaImmagine (citta){
 }
 
 
-//setta lon e lat data una citta e inserisce il nome della citta
-async function cercacitta (citta){
-
-
-    let posizione =  await eseguefetch(`/api/posizionecitta/${citta}`);
-    
-    if(isEmpty(posizione) || posizione[0].name === undefined){
-        
-      document.getElementById('nometitolo').innerText = "citta non trovata"; 
-       nomecitta = "inesistente";
-            
-    }
-    else {
-
-         nomecitta = citta;
-         lat = posizione[0].lat;
-         lon = posizione[0].lon;
-      document.getElementById("nometitolo").innerText =  nomecitta.toUpperCase();
-      settaDati(lat,lon);
-      settaImmagine(nomecitta);
-    }
-}
-
 
     //data lat e lon  valide setta i dati del meteo
-    async function settaDati(lat,lon) {
+    async function settaDati(lat,lon, callback) {
       
       let previsione =  await eseguefetch(`/api/previsione/${lat}/${lon}`);
 
+    if (previsione.name != undefined){
+
+      if(nomecitta == undefined){
+      nomecitta = previsione.name;
+      }
+      document.getElementById('nometitolo').innerText =  nomecitta; 
       document.getElementById('temp-maxmin-val').innerText =  previsione.main.temp_min +'  °C  ~ ' +  previsione.main.temp_max + ' °C' ;
       document.getElementById('temperatura').innerText = previsione.main.temp  + ' °C';
       document.getElementById('temp-percepita').innerText =  "temperatura percepita: " + previsione.main.feels_like + ' °C';
@@ -95,10 +104,12 @@ async function cercacitta (citta){
       document.getElementById('descrizione').innerText = 'Descrizione: ' + previsione.weather[0].description;
       document.getElementById('vento').innerText = 'Vento: ' + previsione.wind.speed + ' Km/H';
       document.getElementById("pulsante").disabled = false;
-
+        if(callback != undefined){
+          
+          callback(nomecitta)
+        }
     }
-
-
+  }
 
 
     
@@ -127,27 +138,20 @@ async function cercacitta (citta){
     
 
 
-
-
-
-       
-
-
 //metodo che viene eseguito al caricamento della pagina
 document.addEventListener('DOMContentLoaded', async () => {
     
 
-    const parametri = new URLSearchParams(window.location.search);
-    const citta = parametri.get("nomecitta");
-    if (citta !== null) {
+      const parametri = new URLSearchParams(window.location.search);
+      nomecitta = parametri.get("nomecitta");
 
-        cercacitta(citta);
+      if (nomecitta == undefined) {
 
-    }  else{
+             datiGeolocalizzazione();
+      }
+      else  {
 
-          geoloc();
-     }
-
-   
+            datiNome (nomecitta);
+      }
 
     })  
