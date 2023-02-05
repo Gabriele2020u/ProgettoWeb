@@ -24,9 +24,9 @@ function geoloc() {
     navigator.geolocation.getCurrentPosition(function (position) {
 
        lon = position.coords.longitude;
-       lat = position.coords.longitude;
-      cercacitta(lon,lat)
+       lat = position.coords.latitude;
       settaDati(lat,lon)
+      settaImmagine(citta)
       
   },
   function (error) {
