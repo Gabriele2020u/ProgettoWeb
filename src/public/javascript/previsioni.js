@@ -2,6 +2,7 @@ var lon;
 var lat;
 var nomecitta;
 var oggi;
+var defaultimg = "images/cittadefault.png"
 const giorni = ['Domenica', 'Lunedi', 'Martedi', 'Mercoledi', 'Giovedi', 'Venerdi', 'Sabato'];
 
 //METODI DI SUPPORTO
@@ -42,19 +43,18 @@ async function   settaImmagine (citta){
     if(!isEmpty(link)  && link.total != 0){
 
       
-      let imagelink = link.results[0].urls.full;
-      let stringa = "url(" + imagelink +  ")";
-      
-
-      document.getElementById("container").style.backgroundSize = "cover";
-      document.getElementById("container").style.backgroundRepeat = "no-repeat";
-      document.getElementById("container").style.backgroundImage = stringa;
+        imagelink = link.results[0].urls.full;
+    
     }
     else{
 
-        document.getElementById("main").style.backgroundColor = "rgba(39, 226, 245, 0.8)";
+       imagelink = defaultimg;
     }
-    
+
+    let stringa = "url(" + imagelink +  ")";
+    document.getElementById("container").style.backgroundSize = "cover";
+    document.getElementById("container").style.backgroundRepeat = "no-repeat";
+    document.getElementById("container").style.backgroundImage = stringa;
    
 }
 
