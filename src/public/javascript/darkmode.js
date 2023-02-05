@@ -33,7 +33,12 @@ function attivaDarkMode () {
         element.className = element.className.replace(/-light/g, '-dark');
       });
       
-  
+    //cambia  pulsante
+    document.querySelectorAll('.btn-light').forEach((element) => {
+    
+        element.className = element.className.replace(/-light/g, '-dark');
+      });
+      
   
     // salvo il nuovo valore
     const   darkTheme = true;
@@ -68,6 +73,12 @@ function attivaLightMode () {
     });
 
 
+    //cambia  pulsante
+    document.querySelectorAll('.btn-dark').forEach((element) => {
+    
+        element.className = element.className.replace(/-dark/g, '-light');
+      });
+      
 
   
     // salvo il nuovo valore
