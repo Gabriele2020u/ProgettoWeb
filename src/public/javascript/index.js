@@ -21,7 +21,6 @@ async function showInfo (){
       let previsione_m =  await eseguefetch(`/api/previsione/${lat_m}/${lon_m}`);
       let previsione_r =  await eseguefetch(`/api/previsione/${lat_r}/${lon_r}`);
       let previsione_n =  await eseguefetch(`/api/previsione/${lat_n}/${lon_n}`);
-console.log(previsione_m);
       document.getElementById('temp-milano').innerText = 'Temperatura: ' + previsione_m.main.temp  + ' °C';
       document.getElementById('temp-roma').innerText = 'Temperatura: ' + previsione_r.main.temp  + ' °C';
       document.getElementById('temp-napoli').innerText = 'Temperatura: ' + previsione_n.main.temp  + ' °C';
