@@ -22,18 +22,23 @@ async function showInfo (){
       let previsione_m =  await eseguefetch(`/api/previsione/${lat_m}/${lon_m}`);
       let previsione_r =  await eseguefetch(`/api/previsione/${lat_r}/${lon_r}`);
       let previsione_n =  await eseguefetch(`/api/previsione/${lat_n}/${lon_n}`);
+console.log(previsione_m);
+      document.getElementById('temp-milano').innerText = 'Temperatura: ' + previsione_m.main.temp  + ' °C';
+      document.getElementById('temp-roma').innerText = 'Temperatura: ' + previsione_r.main.temp  + ' °C';
+      document.getElementById('temp-napoli').innerText = 'Temperatura: ' + previsione_n.main.temp  + ' °C';
 
-      document.getElementById('temp-milano').innerText = 'Temperatura: ' + previsione_m[0].main.temp  + ' °C';
-      document.getElementById('temp-roma').innerText = 'Temperatura: ' + previsione_r.list[0].main.temp  + ' °C';
-      document.getElementById('temp-napoli').innerText = 'Temperatura: ' + previsione_n.list[0].main.temp  + ' °C';
+      document.getElementById('descriz-m').innerText = 'Descrizione: ' + previsione_m.weather[0].description;
+      document.getElementById('descriz-r').innerText = 'Descrizione: ' + previsione_r.weather[0].description;
+      document.getElementById('descriz-n').innerText = 'Descrizione: ' + previsione_n.weather[0].description;
 
-      document.getElementById('descriz-m').innerText = 'Descrizione: ' + previsione_m.list[0].weather[0].description;
-      document.getElementById('descriz-r').innerText = 'Descrizione: ' + previsione_r.list[0].weather[0].description;
-      document.getElementById('descriz-n').innerText = 'Descrizione: ' + previsione_n.list[0].weather[0].description;
-
-      icon_m = previsione_m.weather.icon;
-      console.log(icon_m);
+      icon_m = previsione_m.weather[0].icon;
       document.getElementById('mil_emoji').src= 'http://openweathermap.org/img/wn/'+icon_m+'@2x.png';
+
+      icon_r = previsione_r.weather[0].icon;
+      document.getElementById('rom_emoji').src= 'http://openweathermap.org/img/wn/'+icon_r+'@2x.png';
+
+      icon_n = previsione_n.weather[0].icon;
+      document.getElementById('nap_emoji').src= 'http://openweathermap.org/img/wn/'+icon_n+'@2x.png';
 }
 
 //METODI DI SUPPORTO
@@ -70,6 +75,6 @@ src.appendChild(img);
 document.addEventListener('DOMContentLoaded', async () => {
 
     showInfo();
-    getWeatherEmoji();
+  //  getWeatherEmoji();
 
     })

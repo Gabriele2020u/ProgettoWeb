@@ -47,13 +47,23 @@ display: inline-block;
 font-size: 16px;
 margin: 4px 2px;
 cursor: pointer;
-background-color: #008CBA;
+background-color: #7b7f80;
+border-radius: 16% !important;
 }
 
 .weatheremoji {
-  /*  border-radius: 50% !important;*/
-  /*  max-width: 100%;*/
+    opacity: 70%;
     text-align: center;
-    width: 40px;
-    height: 40px;
+    width: 60px;
+    height: 60px;
   }
+
+.white_details{
+    background-color: lightskyblue;
+    color: rgb(24, 26, 32);
+}
+
+.dark_details{
+    color: white;
+    background-color: rgb(24, 26, 32);
+}

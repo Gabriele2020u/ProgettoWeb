@@ -21,6 +21,12 @@ function attivaDarkMode () {
         element.className = element.className.replace( 'white', 'dark');
       });
 
+   // modifica background e colore del details
+    document.querySelectorAll('.white_details').forEach((element) => {
+    
+        element.className = element.className.replace( 'white_details', 'dark_details');
+      });
+
     //cambia  la navbar e il footer di colore
     document.querySelectorAll('.bg-light').forEach((element) => {
     
@@ -49,6 +55,12 @@ function attivaLightMode () {
     
         element.className = element.className.replace( 'dark', 'white');
       });
+
+   // modifica background e colore del details
+     document.querySelectorAll('.dark_details').forEach((element) => {
+    
+      element.className = element.className.replace( 'dark_details', 'white_details');
+    });
 
     //cambia navbar e footer di colore
     document.querySelectorAll('.bg-dark').forEach((element) => {
