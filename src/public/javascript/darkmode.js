@@ -75,7 +75,7 @@ function caricaInfo () {
     if (theme != null) {
       theme = JSON.parse(theme);
   
-        if (theme.darkTheme) {
+        if (theme) {
           attivaDarkMode();
           document.getElementById('darkModeToggle').checked = true;
         } else {
