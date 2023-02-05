@@ -80,7 +80,7 @@
 
   <!--  CONTAINER -->
 
-  <div class="container-fluid" id="container"  >
+  <div class="container" id="container"  >
 
     <!-- riga titolo -->
       <div class="row botspace " >  <h1 id="nometitolo" class="white" >  </h1>  </div>
@@ -106,19 +106,25 @@
      <!--  container in basso a destra -->
          <div class="info white">
 
+          <p id="temp-maxmin">Temperatura (massima e minima): </p>
+          <p id="temp-maxmin-val">  </p>
            <p id="temp-percepita">Percepita: </p>
            <p id="umidita">Umidità: </p>
            <p id="descrizione">Descrizione: </p>
            <p id="vento">Vento: </p>
-           <p id="prob">Precipitazioni: </p>
 
 
           </div>
         </div>
     </div>
-    <!-- giorni successivi  -->
 
-    <div class="white info row">
+
+    <!-- giorni successivi  -->
+    <div class="d-grid ">
+      <button class="btn btn-light" type="button">mostra meteo giorni successivi</button>
+    </div>
+   
+    <div class="white info row  infosettimana">
       <p id="giorno2" > ...  </p>
       <p id="giorno3" > ... </p>
       <p id="giorno4" > ...  </p>
