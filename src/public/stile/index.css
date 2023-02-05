@@ -50,8 +50,10 @@ cursor: pointer;
 background-color: #008CBA;
 }
 
-img.RID
-{
-    position: Absolute;
-    clip: Rect(0px 50px 200px 0px);
-}
+.weatheremoji {
+  /*  border-radius: 50% !important;*/
+  /*  max-width: 100%;*/
+    text-align: center;
+    width: 40px;
+    height: 40px;
+  }

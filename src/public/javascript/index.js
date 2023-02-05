@@ -23,7 +23,7 @@ async function showInfo (){
       let previsione_r =  await eseguefetch(`/api/previsione/${lat_r}/${lon_r}`);
       let previsione_n =  await eseguefetch(`/api/previsione/${lat_n}/${lon_n}`);
 
-      document.getElementById('temp-milano').innerText = 'Temperatura: ' + previsione_m.list[0].main.temp  + ' °C';
+      document.getElementById('temp-milano').innerText = 'Temperatura: ' + previsione_m[0].main.temp  + ' °C';
       document.getElementById('temp-roma').innerText = 'Temperatura: ' + previsione_r.list[0].main.temp  + ' °C';
       document.getElementById('temp-napoli').innerText = 'Temperatura: ' + previsione_n.list[0].main.temp  + ' °C';
 
@@ -31,6 +31,9 @@ async function showInfo (){
       document.getElementById('descriz-r').innerText = 'Descrizione: ' + previsione_r.list[0].weather[0].description;
       document.getElementById('descriz-n').innerText = 'Descrizione: ' + previsione_n.list[0].weather[0].description;
 
+      icon_m = previsione_m.weather.icon;
+      console.log(icon_m);
+      document.getElementById('mil_emoji').src= 'http://openweathermap.org/img/wn/'+icon_m+'@2x.png';
 }
 
 //METODI DI SUPPORTO
@@ -45,6 +48,21 @@ async function eseguefetch (url) {
     return response.ok ? response.json() : Promise.reject({ error: 500 });
   };
 
+/*
+async function getWeatherEmoji (){
+icon_m = previsione_m.weather.icon;
+console.log(icon_m);
+  document.getElementById('mil_emoji').src= 'http://openweathermap.org/img/wn/'+icon_m+'@2x.png';
+
+  
+var img = document.createElement("img"); 
+ 
+img.src = "image.png"; 
+var src = document.getElementById("x"); 
+ 
+src.appendChild(img); 
+}
+  */
 
 //////////////////////////////////////////////
 
@@ -52,5 +70,6 @@ async function eseguefetch (url) {
 document.addEventListener('DOMContentLoaded', async () => {
 
     showInfo();
+    getWeatherEmoji();
 
     })
