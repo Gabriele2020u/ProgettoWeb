@@ -23,10 +23,10 @@ async function eseguefetch (url) {
 function geoloc() {
     navigator.geolocation.getCurrentPosition(function (position) {
 
-      var lon = position.coords.longitude;
-      var lat = position.coords.longitude;
+       lon = position.coords.longitude;
+       lat = position.coords.longitude;
       cercacitta(lon,lat)
-      settaDati(lon,lat)
+      settaDati(lat,lon)
       
   },
   function (error) {
@@ -68,14 +68,14 @@ async function cercacitta (citta){
     if(isEmpty(posizione) || posizione[0].name === undefined){
         
       document.getElementById('nometitolo').innerText = "citta non trovata"; 
-      var nomecitta = "inesistente";
+       nomecitta = "inesistente";
             
     }
     else {
 
-        var nomecitta = citta;
-        var lat = posizione[0].lat;
-        var lon = posizione[0].lon;
+         nomecitta = citta;
+         lat = posizione[0].lat;
+         lon = posizione[0].lon;
       document.getElementById("nometitolo").innerText =  nomecitta.toUpperCase();
       settaDati(lat,lon);
       settaImmagine(nomecitta);
@@ -88,28 +88,44 @@ async function cercacitta (citta){
       
       let previsione =  await eseguefetch(`/api/previsione/${lat}/${lon}`);
 
-     
-      
-      document.getElementById('prob').innerText = ': ' + Math.round(previsione.pop * 100)  + ' %';
+      document.getElementById('temp-maxmin-val').innerText =  previsione.main.temp_min +'  °C  ~ ' +  previsione.main.temp_max + ' °C' ;
       document.getElementById('temperatura').innerText = previsione.main.temp  + ' °C';
       document.getElementById('temp-percepita').innerText =  "temperatura percepita: " + previsione.main.feels_like + ' °C';
       document.getElementById('umidita').innerText = 'Umidità: ' + previsione.main.humidity + ' %' ;
       document.getElementById('descrizione').innerText = 'Descrizione: ' + previsione.weather[0].description;
       document.getElementById('vento').innerText = 'Vento: ' + previsione.wind.speed + ' Km/H';
+      document.getElementById("pulsante").disabled = false;
 
     }
+
 
 
 
     
-      ////////////////////// settimana display
-    async function tempSettimana(){
-      const data = new Date(previsione.list[0].dt_txt);
-      var oggi = data.getDay();
-      document.getElementById('giorno2').innerText =  giorni[(oggi+1)%7] + ":   temperatura: " + previsione.list[8].main.temp + "c°    " + " precipitazioni: " +  Math.round(previsione.list[8].pop * 100) +" %";
-      document.getElementById('giorno3').innerText =  giorni[(oggi+2)%7] + ":   temperatura: " + previsione.list[16].main.temp + "c°    " + " precipitazioni: " +  Math.round(previsione.list[16].pop * 100) +" %";
-      document.getElementById('giorno4').innerText =  giorni[(oggi+3)%7] + ":   temperatura: " + previsione.list[24].main.temp + "c°    " + " precipitazioni: " +  Math.round(previsione.list[24].pop * 100) +" %";
-    }
+   ////////////////////// settimana display
+    async function mostrasettimana(){
+
+      const xhttp =  new XMLHttpRequest();
+
+        xhttp.onload = function() {
+
+          previsionesettimana =  JSON.parse(this.response);
+          const data = new Date(previsionesettimana.list[0].dt_txt);
+           oggi = data.getDay();
+          document.getElementById('giorno2').innerText =  giorni[(oggi+1)%7] + "   :   temperatura: " + previsionesettimana.list[8].main.temp + "c°    " + "    precipitazioni: " +  Math.round(previsionesettimana.list[8].pop * 100) +" %";
+          document.getElementById('giorno3').innerText =  giorni[(oggi+2)%7] + "   :   temperatura: " + previsionesettimana.list[16].main.temp + "c°    " + "    precipitazioni: " +  Math.round(previsionesettimana.list[16].pop * 100) +" %";
+          document.getElementById('giorno4').innerText =  giorni[(oggi+3)%7] + "   :   temperatura: " + previsionesettimana.list[24].main.temp + "c°    " + "    precipitazioni: " +  Math.round(previsionesettimana.list[24].pop * 100) +" %";
+          document.getElementById('pulsante').classList.add('hidden');
+          document.getElementById('divSettimana').classList.remove('hidden');  
+          
+        }
+        
+      xhttp.open("GET", `/api/previsioneSettimana/${lat}/${lon}`);
+      xhttp.send();
+
+      }
+    
+
 
 
 
