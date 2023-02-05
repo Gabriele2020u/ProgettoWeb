@@ -5,7 +5,7 @@ var lat;
 var nomecitta;
 
 async function showInfo (){
-    console.log("sono qui");
+  
 
     let posizione_milano =  await eseguefetch(`/api/posizionecitta/Milano`);
     let posizione_roma =  await eseguefetch(`/api/posizionecitta/Roma`);
@@ -50,9 +50,7 @@ async function eseguefetch (url) {
 
   //metodo che viene eseguito al caricamento della pagina
 document.addEventListener('DOMContentLoaded', async () => {
-    console.log("sono qui");
+
     showInfo();
-   // showInfo("Roma");
-   // showInfo("Napoli");
 
     })

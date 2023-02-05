@@ -1,12 +1,14 @@
 html, body {
-  
+
   min-height: 100vh;
 }
 
 .botspace{
   margin-bottom: 20px;
 }
-/* SEZIONE TOOGLE DARK MODE */
+
+
+/* ///////////////////////////////////  sEZIONE TOOGLE DARK MODE  //////////////////////////////////////////////////////////*
 
 /* il box attorno lo slider */
 .switch {
@@ -73,6 +75,8 @@ input:checked + .slider:before {
 .slider.round:before {
   border-radius: 50%;
 }
+/* /////////////////////////////////////////////////////////////////////*/
+
 
 .nomesito{
   font-size: 150%;

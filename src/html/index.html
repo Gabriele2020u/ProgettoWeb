@@ -12,55 +12,55 @@
     </head>
     <body>
 
+
 <!-- SEZIONE NAVBAR-->
 <header>
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <div class="container-fluid">
-    <a class="navbar-brand">smartmeteo</a>
-
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page"  href="/">Home</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/previsioni">previsioni</a>
-        </li>
-      </ul>
-    </div>
-
-    <!--  TOOGLE DARK MODE   -->
-    <div class="d-flex dark-mode-toggle">
-      <span class="toggle-icons">☀️</span>
-      <label class="switch">
-        <input type="checkbox" id="darkModeToggle" onclick="checkTheme()">
-        <span class="slider round"></span>
-      </label>
-      <span class="toggle-icons">🌙</span>
-    </div>
-
-    <!--  RICERCA  NAVBAR-->
-    <form action="/previsioni" method="GET">
-      <div class="form-group d-flex justify-content-center flex-sm-row flex-column">
-        <div class="centered-item">
-          <input 
-            class="search form-control text-white bg-light" 
-            type="search" 
-            placeholder="Cerca la cittá"
-            name="nomecitta"
-            required
-          >
-        </div>
-        <div class="centered-item">
-          <button type="submit" class="search-button btn btn-success">Cerca</button>
-        </div>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light py-3">
+    <div class="container-fluid">
+      <a class="navbar-brand nomesito">smartmeteo</a>
+  
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link active infonavbar" aria-current="page"  href="/">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link infonavbar" href="/previsioni">previsioni</a>
+          </li>
+        </ul>
+      </div>
+<!--  TOOGLE DARK MODE   -->
+      <div class="d-flex dark-mode-toggle">
+        <span class="toggle-icons">☀️</span>
+        <label class="switch">
+          <input type="checkbox" id="darkModeToggle" onclick= "checkTheme()">
+          <span class="slider round"></span>
+        </label>
+        <span class="toggle-icons">🌙</span>
       </div>
 
-
-    </form>
-  </div>
-</nav>
-</header>
+      <!--  RICERCA  NAVBAR-->
+      <form action="/previsioni" method="GET">
+        <div class="form-group d-flex justify-content-center flex-sm-row flex-column">
+          <div class="centered-item ">
+            <input 
+              class="search form-control white" 
+              type="search" 
+              placeholder="Cerca la cittá"
+              name="nomecitta"
+              required
+            >
+          </div>
+          <div class="centered-item ">
+            <button type="submit" class="search-button btn btn-success ">Cerca</button>
+          </div>
+        </div>
+  
+  
+      </form>
+    </div>
+  </nav>
+  </header>
 
 <main>
  <!-- SEZIONE Carousel -->
@@ -75,9 +75,9 @@
         alt="Milano"
       >
       <div class="carousel-caption d-md-block">
-        <span class="testovisibile">Milano</span><p></p>
-        <span class="testocarosello" id="temp-milano">Temperatura: </span><p></p>
-        <span class="testocarosello" id="descriz-m">Descrizione: </span>
+        <span class="white testocarosello">Milano</span><p></p>
+        <span class="white testocarosello" id="temp-milano">Temperatura: </span><p></p>
+        <span class="white testocarosello" id="descriz-m">Descrizione: </span>
       </div>
     </div>
     <div class="carousel-item">
@@ -89,9 +89,9 @@
         alt="roma"
       >
       <div class="carousel-caption d-md-block">
-        <span class="testovisibile">Roma</span><p></p>
-        <span class="testocarosello" id="temp-roma">Temperatura: </span><p></p>
-        <span class="testocarosello" id="descriz-r">Descrizione: </span>
+        <span class="white testocarosello">Roma</span><p></p>
+        <span class="white testocarosello" id="temp-roma">Temperatura: </span><p></p>
+        <span class="white testocarosello" id="descriz-r">Descrizione: </span>
       </div>
     </div>
     <div class="carousel-item">
@@ -102,9 +102,9 @@
         alt="Napoli"
       >
       <div class="carousel-caption d-md-block">
-        <span class="testovisibile">Napoli</span><p></p>
-        <span class="testocarosello" id="temp-napoli">Temperatura: </span><p></p>
-        <span class="testocarosello" id="descriz-n">Descrizione: </span>
+        <span class="white testocarosello">Napoli</span><p></p>
+        <span class="white testocarosello" id="temp-napoli">Temperatura: </span><p></p>
+        <span class="white testocarosello" id="descriz-n">Descrizione: </span>
       </div>
     </div>
   </div>
@@ -119,11 +119,14 @@
 </div>
 </main>
 
-  <!-- SEZIONE   Footer -->
-    <footer id="footer" class="text-center bg-light">
-      <p class="footerBrandName">smartmeteo</p>
-      <p>progetto di &copy; Copyright Gabriele dino/Francesco Fontana - smartmeteo 2023</p>
-    </footer>
+<!-- SEZIONE   Footer -->
+<footer id="footer " class="text-center bg-light ">
+  <div class="white containe ">
+  <p class="nomesito white">smartmeteo</p>
+  <p class="footertesto white">progetto di &copy; Copyright Gabriele dino/Francesco Fontana - smartmeteo 2023</p>
+</div>
+</footer>
+
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
     <script src="javascript/darkmode.js"></script>
