@@ -16,6 +16,24 @@ async function eseguefetch (url) {
     return response.ok ? response.json() : Promise.reject({ error: 500 });
   };
 
+///////////////////////////////////////////////////////////////
+
+
+ // Funzione riempie con la posizione della localizzazione
+function geoloc() {
+    navigator.geolocation.getCurrentPosition(function (position) {
+
+      var lon = position.coords.longitude;
+      var lat = position.coords.longitude;
+      cercacitta(lon,lat)
+      settaDati(lon,lat)
+      
+  },
+  function (error) {
+    document.getElementById("nometitolo").innerText =  "posizione negata";
+    nomecitta = "inesistente";
+  })
+}
 
  //funzione per settare l'immagine di sfondo se possibile 
 async function   settaImmagine (citta){
@@ -25,7 +43,6 @@ async function   settaImmagine (citta){
 
       
       let imagelink = link.results[0].urls.full;
-      console.log(imagelink);
       let stringa = "url(" + imagelink +  ")";
       
 
@@ -42,7 +59,7 @@ async function   settaImmagine (citta){
 }
 
 
-
+//setta lon e lat data una citta e inserisce il nome della citta
 async function cercacitta (citta){
 
 
@@ -51,49 +68,53 @@ async function cercacitta (citta){
     if(isEmpty(posizione) || posizione[0].name === undefined){
         
       document.getElementById('nometitolo').innerText = "citta non trovata"; 
+      var nomecitta = "inesistente";
             
     }
     else {
+
         var nomecitta = citta;
         var lat = posizione[0].lat;
         var lon = posizione[0].lon;
       document.getElementById("nometitolo").innerText =  nomecitta.toUpperCase();
+      settaDati(lat,lon);
+      settaImmagine(nomecitta);
+    }
+}
 
-////////////////////////////NON CONTROLLO CHE ABBIA PREVISIONI VALIDA
+
+    //data lat e lon  valide setta i dati del meteo
+    async function settaDati(lat,lon) {
+      
       let previsione =  await eseguefetch(`/api/previsione/${lat}/${lon}`);
 
-      document.getElementById('temperatura').innerText = previsione.list[0].main.temp  + ' °C';
-      document.getElementById('temp-percepita').innerText =  "temperatura percepita: " + previsione.list[0].main.feels_like + ' °C';
-      document.getElementById('umidita').innerText = 'Umidità: ' + previsione.list[0].main.humidity + ' %' ;
-      document.getElementById('descrizione').innerText = 'Descrizione: ' + previsione.list[0].weather[0].description;
-      document.getElementById('vento').innerText = 'Vento: ' + previsione.list[0].wind.speed + ' Km/H';
-      document.getElementById('prob').innerText = 'Precipitazioni: ' + Math.round(previsione.list[0].pop * 100)  + ' %';
+     
+      
+      document.getElementById('prob').innerText = ': ' + Math.round(previsione.pop * 100)  + ' %';
+      document.getElementById('temperatura').innerText = previsione.main.temp  + ' °C';
+      document.getElementById('temp-percepita').innerText =  "temperatura percepita: " + previsione.main.feels_like + ' °C';
+      document.getElementById('umidita').innerText = 'Umidità: ' + previsione.main.humidity + ' %' ;
+      document.getElementById('descrizione').innerText = 'Descrizione: ' + previsione.weather[0].description;
+      document.getElementById('vento').innerText = 'Vento: ' + previsione.wind.speed + ' Km/H';
+
+    }
 
 
+
+    
       ////////////////////// settimana display
-
+    async function tempSettimana(){
       const data = new Date(previsione.list[0].dt_txt);
       var oggi = data.getDay();
       document.getElementById('giorno2').innerText =  giorni[(oggi+1)%7] + ":   temperatura: " + previsione.list[8].main.temp + "c°    " + " precipitazioni: " +  Math.round(previsione.list[8].pop * 100) +" %";
       document.getElementById('giorno3').innerText =  giorni[(oggi+2)%7] + ":   temperatura: " + previsione.list[16].main.temp + "c°    " + " precipitazioni: " +  Math.round(previsione.list[16].pop * 100) +" %";
       document.getElementById('giorno4').innerText =  giorni[(oggi+3)%7] + ":   temperatura: " + previsione.list[24].main.temp + "c°    " + " precipitazioni: " +  Math.round(previsione.list[24].pop * 100) +" %";
-
-
-
     }
 
 
-/*
-    if (risposta.name === undefined) {
-        document.getElementById('pos').innerText = 'Posizione: Sconosciuta';
-      } else {
-        document.getElementById('pos').innerText = 'Posizione: ' + city;
-        cityName = city;
-        handleButtons(cityName);
-      }*/
+
 
        
-}
 
 
 //metodo che viene eseguito al caricamento della pagina
@@ -105,18 +126,12 @@ document.addEventListener('DOMContentLoaded', async () => {
     if (citta !== null) {
 
         cercacitta(citta);
-        settaImmagine(citta);
-       }
-   /* } else {
-      navigator.permissions.query({name:'geolocation'}).then(function(result) {
-        if (result.state === 'granted') {
-          navigator.geolocation.getCurrentPosition((position) => {
-            const { latitude, longitude } = position.coords;
-            getCityByLocation(latitude, longitude, true);
-          });
-        } else {
-          getCityByLocation(null, null, true);
-        }
-      })*/
+
+    }  else{
+
+          geoloc();
+     }
+
+   
 
     })  

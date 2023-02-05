@@ -55,7 +55,8 @@ app.get('/', (req, res) => {
       const lon = req.params.lon;
       const lat = req.params.lat;
       
-      axios.get(`https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&units=metric&lang=${lingua}&appid=${Keyweather}`)
+
+      axios.get(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric&lang=${lingua}&appid=${Keyweather}`)
         .then((temperatura) => res.send(temperatura.data))  
         .catch((err) => res.json({error: `previsione non trovata, Info: ${err}`}));  
   
