@@ -30,9 +30,9 @@
 
 
 
+
 .main{
     background-image: url("../images/SfondoPrevisioni.jpg");
-
 }
 
 .info {
@@ -42,12 +42,4 @@
   opacity: 80%;
 }
 
-.dark{
-  color: white;
-  background-color: black;
-}
 
-.white{
-  color: black;
-  background-color: white;
-}

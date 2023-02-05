@@ -15,8 +15,7 @@ function checkTheme () {
 
 function attivaDarkMode () {
 
-
-
+   // modifica background e colore del testo
     document.querySelectorAll('.white').forEach((element) => {
     
         element.className = element.className.replace( 'white', 'dark');
@@ -27,20 +26,6 @@ function attivaDarkMode () {
     
         element.className = element.className.replace(/-light/g, '-dark');
       });
-  
-/*
-         // modifica il colore del cerchio
-         let cerchio = document.getElementById("cerchio");
-         if(cerchio != null ){
-            cerchio.style.background = "black";
-         }*/
-
- 
-    //cambio colore info e giorni (testi e sfondi row del container)
-   document.querySelectorAll('.whiteinfo').forEach((element) => {
-    
-    element.className = element.className.replace( 'whiteinfo', 'darkinfo');
-  });
       
   
   
@@ -59,6 +44,7 @@ function attivaLightMode () {
 
 
 
+   // modifica background e colore del testo
     document.querySelectorAll('.dark').forEach((element) => {
     
         element.className = element.className.replace( 'dark', 'white');
@@ -69,19 +55,6 @@ function attivaLightMode () {
       element.className = element.className.replace(/-dark/g, '-light');
     });
 
-
-   // modifica il colore del cerchio
-  document.querySelectorAll('.darktitle').forEach((element) => {
-    
-    element.className = element.className.replace( 'darktitle', 'whitetitle');
-  });
-
-
-   //cambio colore info e giorni (testi e sfondi row del container)
-   document.querySelectorAll('.darkinfo').forEach((element) => {
-    
-    element.className = element.className.replace( 'darkinfo', 'whiteinfo');
-  });
 
 
   
