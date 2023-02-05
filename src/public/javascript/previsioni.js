@@ -90,7 +90,7 @@ async function cercacitta (citta){
 
      
       
-      document.getElementById('prob').innerText = ': ' + Math.round(previsione.pop * 100)  + ' %';
+      document.getElementById('temp-maxmin-val').innerText =  previsione.main.temp_min +'  °C - ' +  previsione.main.temp_max + ' °C' ;
       document.getElementById('temperatura').innerText = previsione.main.temp  + ' °C';
       document.getElementById('temp-percepita').innerText =  "temperatura percepita: " + previsione.main.feels_like + ' °C';
       document.getElementById('umidita').innerText = 'Umidità: ' + previsione.main.humidity + ' %' ;
