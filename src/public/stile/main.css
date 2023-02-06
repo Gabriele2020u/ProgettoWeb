@@ -8,7 +8,7 @@ html, body {
 }
 
 
-/* ///////////////////////////////////  sEZIONE TOOGLE DARK MODE  //////////////////////////////////////////////////////////*
+/* ///////////////////////////////////  SEZIONE TOOGLE DARK MODE  //////////////////////////////////////////////////////////*
 
 /* il box attorno lo slider */
 .switch {
@@ -94,8 +94,4 @@ input:checked + .slider:before {
 .white{
   color: rgb(24, 26, 32);
   background-color: white;
-}
-
-.infonavbar{
-  font-size: 130%;
 }
