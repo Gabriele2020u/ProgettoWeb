@@ -65,6 +65,7 @@ async function  datiNome (citta)  {
  //funzione per settare l'immagine di sfondo se possibile 
 async function   settaImmagine (citta){
 
+  
     let link =  await  eseguefetch(`/api/immagine/${citta}`);
 
     if  (!isEmpty(link)  && link.total != 0 && citta != "inesistente"  ) {

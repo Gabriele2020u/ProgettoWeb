@@ -1,170 +1,164 @@
 
-  <!doctype html>
-  <html lang="ita">
-    <head>
-      <meta charset="utf-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1">
-      <title>smartmeteo</title>
+<!doctype html>
+<html lang="ita">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>smartmeteo</title>
 
-      <link rel="shortcut icon" href="#" />
-      <link rel="stylesheet" type="text/css" href="stile/main.css"/>
-      <link rel="stylesheet" type="text/css" href="stile/index.css"/>
-      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
-    </head>
-    <body>
+<link rel="shortcut icon" href="#" />
+    <link rel="stylesheet" type="text/css" href="stile/main.css"/>
+    <link rel="stylesheet" type="text/css" href="stile/index.css"/>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+  </head>
+  <body>
 
 
 <!-- SEZIONE NAVBAR-->
 <header>
-  <nav class="navbar navbar-expand-lg navbar-light bg-light py-3">
-    <div class="container-fluid">
-      <a class="navbar-brand nomesito">smartmeteo</a>
-  
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav">
-          <li class="nav-item">
-            <a class="nav-link active infonavbar" aria-current="page"  href="/">Home</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link infonavbar" href="/previsioni">previsioni</a>
-          </li>
-        </ul>
-      </div>
-<!--  TOOGLE DARK MODE   -->
-      <div class="d-flex dark-mode-toggle">
-        <span class="toggle-icons">☀️</span>
-        <label class="switch">
-          <input type="checkbox" id="darkModeToggle" onclick= "checkTheme()">
-          <span class="slider round"></span>
-        </label>
-        <span class="toggle-icons">🌙</span>
-      </div>
+<nav class="navbar navbar-expand-lg navbar-light bg-light ">
+  <div class="container-fluid">
+    <a class="navbar-brand ">smartmeteo</a>
 
-      <!--  RICERCA  NAVBAR-->
-      <form action="/previsioni" method="GET">
-        <div class="form-group d-flex justify-content-center flex-sm-row flex-column">
-          <div class="centered-item ">
-            <input 
-              class="search form-control white" 
-              type="search" 
-              placeholder="Cerca la cittá"
-              name="nomecitta"
-              required
-            >
-          </div>
-          <div class="centered-item ">
-            <button type="submit" class="search-button btn btn-success ">Cerca</button>
-          </div>
-        </div>
-  
-  
-      </form>
+
+    <!--  info navbar -->
+    <div class= "collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active " aria-current="page"  href="/">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link " href="/previsioni">previsioni</a>
+        </li>
+      </ul>
     </div>
-  </nav>
-  </header>
+
+
+<!--  TOOGLE DARK MODE   -->
+    <div class="d-flex dark-mode-toggle">
+      <span class="toggle-icons">☀️</span>
+      <label class="switch">
+        <input type="checkbox" id="darkModeToggle" onclick= "checkTheme()">
+        <span class="slider round"></span>
+      </label>
+      <span class="toggle-icons">🌙</span>
+    </div>
+
+    <!--  RICERCA  NAVBAR-->
+    <form action="/previsioni" method="GET">
+      <div class="form-group d-flex justify-content-center flex-sm-row flex-column">
+        <div class="centered-item ">
+          <input 
+            class="search form-control white" 
+            type="search" 
+            placeholder="Cerca la cittá"
+            name="nomecitta"
+            required
+          >
+        </div>
+        <div class="centered-item ">
+          <button type="submit" class="search-button btn btn-success ">Cerca</button>
+        </div>
+      </div>
+    </form>
+
+    <button
+    class="navbar-toggler"
+    type="button"
+    data-bs-toggle="collapse"
+    data-bs-target="#navbarNav"
+    aria-controls="navbar-toggler"
+    aria-expanded="false"
+    aria-label="Toggle navigation"
+  >
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  </div>
+</nav>
+</header>
 
 <main>
- <!-- SEZIONE Carousel -->
- <!-- aggiungo web worker  nelle img-->
- <div id="carousel-controls" class="carousel slide" data-bs-ride="carousel">
-  <div class="carousel-inner">
-    <div class="carousel-item active">
-      <img
-        src="https://images.unsplash.com/photo-1645101781465-0b06474f58b5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2614&q=80"
-        class="d-block w-100"
-        style="height: 600px;"
-        alt="Milano"
-      >
-      <div class="carousel-caption d-md-block">
-        <span class="white testocarosello">Milano</span><p></p>
-        <span class="white testocarosello" id="temp-milano">Temperatura: </span><p></p>
-        <span class="white testocarosello" id="descriz-m">Descrizione: </span>
-      </div>
-    </div>
-    <div class="carousel-item">
-      <img
-        src="https://media.tacdn.com/media/attractions-content--1x-1/0b/29/2c/cc.jpg"
-        class="d-block w-100"
-        style="height: 600px;"
-        alt="Roma"
-      >
-      <div class="carousel-caption d-md-block">
-        <span class="white testocarosello">Roma</span><p></p>
-        <span class="white testocarosello" id="temp-roma">Temperatura: </span><p></p>
-        <span class="white testocarosello" id="descriz-r">Descrizione: </span>
-      </div>
-    </div>
-    <div class="carousel-item">
-      <img
-        src="https://upload.wikimedia.org/wikipedia/commons/0/0d/Napoli.jpg"  
-        class="d-block w-100"
-        style="height: 600px;"
-        alt="Napoli"
-      >
-      <div class="carousel-caption d-md-block">
-        <span class="white testocarosello">Napoli</span><p></p>
-        <span class="white testocarosello" id="temp-napoli">Temperatura: </span><p></p>
-        <span class="white testocarosello" id="descriz-n">Descrizione: </span>
-      </div>
+<!-- SEZIONE Carousel -->
+
+<div id="carousel-controls" class="carousel slide" data-bs-ride="carousel">
+<div class="carousel-inner">
+  <div class="carousel-item active">
+    <img
+      data-src="https://images.unsplash.com/photo-1645101781465-0b06474f58b5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2614&q=80"
+      class="d-block w-100"
+      style="height: 600px;"
+      alt="Milano"
+    >
+    <div class="carousel-caption d-md-block">
+      <span class="white testocarosello">Milano</span><p></p>
+      <span class="white testocarosello" id="temp-milano">Temperatura: </span><p></p>
+      <span class="white testocarosello" id="descriz-m">Descrizione: </span>
     </div>
   </div>
-  <button class="carousel-control-prev" type="button" data-bs-target="#carousel-controls" data-bs-slide="prev">
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Previous</span>
-  </button>
-  <button class="carousel-control-next" type="button" data-bs-target="#carousel-controls" data-bs-slide="next">
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Next</span>
-  </button>
+  <div class="carousel-item">
+    <img
+      data-src="https://media.tacdn.com/media/attractions-content--1x-1/0b/29/2c/cc.jpg"
+      class="d-block w-100"
+      style="height: 600px;"
+      alt="Roma"
+    >
+    <div class="carousel-caption d-md-block">
+      <span class="white testocarosello">Roma</span><p></p>
+      <span class="white testocarosello" id="temp-roma">Temperatura: </span><p></p>
+      <span class="white testocarosello" id="descriz-r">Descrizione: </span>
+    </div>
+  </div>
+  <div class="carousel-item">
+    <img
+      data-src="https://upload.wikimedia.org/wikipedia/commons/0/0d/Napoli.jpg"  
+      class="d-block w-100"
+      style="height: 600px;"
+      alt="Napoli"
+    >
+    <div class="carousel-caption d-md-block">
+      <span class="white testocarosello">Napoli</span><p></p>
+      <span class="white testocarosello" id="temp-napoli">Temperatura: </span><p></p>
+      <span class="white testocarosello" id="descriz-n">Descrizione: </span>
+    </div>
+  </div>
+</div>
+<button class="carousel-control-prev" type="button" data-bs-target="#carousel-controls" data-bs-slide="prev">
+  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+  <span class="visually-hidden">Previous</span>
+</button>
+<button class="carousel-control-next" type="button" data-bs-target="#carousel-controls" data-bs-slide="next">
+  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+  <span class="visually-hidden">Next</span>
+</button>
 </div>
 <!-- inizio SEZIONE 3 cities in rows -->
 <div class="city_rows white_details">
-  <div class="row">
-    <!-- colonna Milano -->
-    <div class="col-lg-4">
-      <img 
-        class="rounded-circle"
-        src= " "
-        data-src="https://www.shutterstock.com/shutterstock/photos/1714109758/display_1500/stock-photo-milan-italy-city-skyline-at-milano-duomo-cathedral-empty-nobody-1714109758.jpg"
-        alt="Immagine di Milano"
-        width="140"
-        height="140"
-      >
-      <h2>Milano</h2>
-      <img class="weatheremoji white_details" id="mil_emoji"></img>
-      <p>Milano, capitale mondiale della moda e del design, è una metropoli del Nord Italia ed è capoluogo della Lombardia. Sede della Borsa Italiana, è un polo finanziario famoso anche per i ristoranti e i negozi esclusivi. Il Duomo in stile gotico e il convento di Santa Maria delle Grazie, che ospita l’affresco “L’Ultima Cena” di Leonardo da Vinci, testimoniano l'eredità artistica e culturale della città.</p>
-      <p><a class="button" href="/previsioni?nomecitta=Milano" role="button">previsioni</a></p>
-    </div>
-    <!-- colonna Roma -->
-    <div class="col-lg-4">
-      <img 
-        class="rounded-circle"
-        src=" "
-        data-src="https://images.unsplash.com/photo-1552832230-c0197dd311b5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1096&q=80"
-        alt="Immagine di Roma"
-        width="140"
-        height="140"
-      >
-      <h2>Roma</h2>
-      <img class="weatheremoji white_details" id="rom_emoji"></img>
-      <p>Roma, capitale dell’Italia, è una grande città cosmopolita con una storia artistica, architettonica e culturale che ha influenzato tutto il mondo e che risale a quasi 3000 anni fa. Le antiche rovine come il Foro e il Colosseo testimoniano la potenza dell’antico Impero romano. Nella Città del Vaticano, sede della Chiesa Cattolica, si trovano la Basilica di San Pietro e i Musei Vaticani, che ospitano capolavori come la Cappella Sistina affrescata da Michelangelo.</p>
-      <p><a class="button" href="/previsioni?nomecitta=Roma" role="button">previsioni</a></p>
-    </div>
-    <!-- colonna Napoli -->
-    <div class="col-lg-4">
-      <img 
-        class="rounded-circle"
-        src=" "
-        data-src="https://images.unsplash.com/photo-1635913695263-7f0918b64ef2?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1099&q=80"
-        alt="Immagine di Napoli"
-        width="140"
-        height="140">
-      <h2>Napoli</h2>
-      <img class="weatheremoji white_details" id="nap_emoji"></img>
-      <p>Napoli è un comune italiano di 914 406 abitanti, terzo in Italia per popolazione, capoluogo della regione Campania, dell'omonima città metropolitana e centro di una delle più popolose e densamente popolate aree metropolitane d'Europa. La città si trova alle pendici del "Vesuvio", uno stratovulcano quiescente, risalendo l'ultima eruzione a 79 anni fa, dell'Europa continentale nonché uno dei più studiati e pericolosi al mondo a causa dell'elevata popolazione delle zone circostanti e delle sue caratteristiche esplosive.</p>
-      <p><a class="button" href="/previsioni?nomecitta=Napoli" role="button">previsioni</a></p>
-    </div>
+<div class="row">
+  <!-- colonna Milano -->
+  <div class="col-lg-4">
+    <img class="rounded-circle" src="https://www.shutterstock.com/shutterstock/photos/1714109758/display_1500/stock-photo-milan-italy-city-skyline-at-milano-duomo-cathedral-empty-nobody-1714109758.jpg" alt="Immagine di Milano" width="140" height="140">
+    <h2>Milano</h2>
+    <img class="weatheremoji white_details" id="mil_emoji"></img>
+    <p>Milano, capitale mondiale della moda e del design, è una metropoli del Nord Italia ed è capoluogo della Lombardia. Sede della Borsa Italiana, è un polo finanziario famoso anche per i ristoranti e i negozi esclusivi. Il Duomo in stile gotico e il convento di Santa Maria delle Grazie, che ospita l’affresco “L’Ultima Cena” di Leonardo da Vinci, testimoniano l'eredità artistica e culturale della città.</p>
+    <p><a class="button" href="/previsioni?nomecitta=milano" role="button">previsioni</a></p>
   </div>
+  <!-- colonna Roma -->
+  <div class="col-lg-4">
+    <img class="rounded-circle" src="https://civitavecchia.portmobility.it/sites/default/files/piazza_fontana_di_trevi.jpg" alt="Immagine di Roma" width="140" height="140">
+    <h2>Roma</h2>
+    <img class="weatheremoji white_details" id="rom_emoji"></img>
+    <p>Roma, capitale dell’Italia, è una grande città cosmopolita con una storia artistica, architettonica e culturale che ha influenzato tutto il mondo e che risale a quasi 3000 anni fa. Le antiche rovine come il Foro e il Colosseo testimoniano la potenza dell’antico Impero romano. Nella Città del Vaticano, sede della Chiesa Cattolica, si trovano la Basilica di San Pietro e i Musei Vaticani, che ospitano capolavori come la Cappella Sistina affrescata da Michelangelo.</p>
+    <p><a class="button" href="/previsioni?nomecitta=roma" role="button">previsioni</a></p>
+  </div>
+  <!-- colonna Napoli -->
+  <div class="col-lg-4">
+    <img class="rounded-circle" src="https://i.pinimg.com/originals/0d/f5/02/0df5026897d2d597af6a814dc7b49088.jpg" alt="Immagine di Napoli" width="140" height="140">
+    <h2>Napoli</h2>
+    <img class="weatheremoji white_details" id="nap_emoji"></img>
+    <p>Napoli è un comune italiano di 914 406 abitanti, terzo in Italia per popolazione, capoluogo della regione Campania, dell'omonima città metropolitana e centro di una delle più popolose e densamente popolate aree metropolitane d'Europa. La città si trova alle pendici del "Vesuvio", uno stratovulcano quiescente, risalendo l'ultima eruzione a 79 anni fa, dell'Europa continentale nonché uno dei più studiati e pericolosi al mondo a causa dell'elevata popolazione delle zone circostanti e delle sue caratteristiche esplosive.</p>
+    <p><a class="button" href="/previsioni?nomecitta=napoli" role="button">previsioni</a></p>
+  </div>
+</div>
 
 
 </div>
@@ -173,15 +167,17 @@
 
 <!-- SEZIONE   Footer -->
 <footer id="footer " class="text-center bg-light ">
-  <div class="white containe ">
-  <p class="nomesito white">smartmeteo</p>
-  <p class="footertesto white">progetto di &copy; Copyright Gabriele dino/Francesco Fontana - smartmeteo 2023</p>
+<div class="white containe ">
+<p class="nomesito white">smartmeteo</p>
+<p class="footertesto white">progetto di &copy; Copyright Gabriele dino/Francesco Fontana - smartmeteo 2023</p>
 </div>
 </footer>
 
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
-    <script src="javascript/darkmode.js"></script>
-    <script src="javascript/index.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+  <script src="javascript/darkmode.js"></script>
+  <script src="javascript/index.js"></script>
+  <script src="javascript/helpers/webworker.js"></script>
+  <script src="javascript/helpers/imgwebworker.js"></script>
 </body>
 </html>

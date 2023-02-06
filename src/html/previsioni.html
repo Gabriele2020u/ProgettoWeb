@@ -25,24 +25,27 @@
     
     <body >
 
-
 <!-- SEZIONE NAVBAR-->
 <header>
-  <nav class="navbar navbar-expand-lg navbar-light bg-light py-3">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light ">
     <div class="container-fluid">
-      <a class="navbar-brand nomesito">smartmeteo</a>
+      <a class="navbar-brand ">smartmeteo</a>
   
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav">
+  
+      <!--  info navbar -->
+      <div class= "collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <a class="nav-link active infonavbar" aria-current="page"  href="/">Home</a>
+            <a class="nav-link active " aria-current="page"  href="/">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link infonavbar" href="/previsioni">previsioni</a>
+            <a class="nav-link " href="/previsioni">previsioni</a>
           </li>
         </ul>
       </div>
-<!--  TOOGLE DARK MODE   -->
+  
+  
+  <!--  TOOGLE DARK MODE   -->
       <div class="d-flex dark-mode-toggle">
         <span class="toggle-icons">☀️</span>
         <label class="switch">
@@ -51,7 +54,7 @@
         </label>
         <span class="toggle-icons">🌙</span>
       </div>
-
+  
       <!--  RICERCA  NAVBAR-->
       <form action="/previsioni" method="GET">
         <div class="form-group d-flex justify-content-center flex-sm-row flex-column">
@@ -68,9 +71,19 @@
             <button type="submit" class="search-button btn btn-success ">Cerca</button>
           </div>
         </div>
-  
-  
       </form>
+  
+      <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarNav"
+      aria-controls="navbar-toggler"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
     </div>
   </nav>
   </header>

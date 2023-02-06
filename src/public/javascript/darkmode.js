@@ -39,6 +39,7 @@ function attivaDarkMode () {
         element.className = element.className.replace(/-light/g, '-dark');
       });
       
+      document.body.style.backgroundColor = "rgb(24, 26, 32)";
   
     // salvo il nuovo valore
     const   darkTheme = true;
@@ -79,7 +80,7 @@ function attivaLightMode () {
         element.className = element.className.replace(/-dark/g, '-light');
       });
       
-
+      document.body.style.backgroundColor = "white" ;
   
     // salvo il nuovo valore
     const   darkTheme = false;
