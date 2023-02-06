@@ -9,8 +9,6 @@ const KeyUnsplash = "L6evowfp3gYUNzs2igzmp5CNLrmRVA_G5xLEDx_Xeds";
 
 
 
-
-
 //dice a express di settare la path statica a public  per gli import css e javascript
 app.use(express.static(path.join(__dirname, 'public')));
 
@@ -20,6 +18,8 @@ app.set('views', path.join(__dirname, 'html'));
 //definisco ejs come view enginge
 app.set('view engine', 'ejs');
 app.engine('.html', require('ejs').renderFile);
+
+
 
 ////////////////////////////            ROUTING       //////////////
 app.get('/previsioni', (req, res) => {
@@ -86,6 +86,11 @@ app.get('/', (req, res) => {
       
         });
 
+  // per i route non definiti mostra la pagina not foound 404
+app.use((req, res, next) => {
+  res.status(404);
+  res.render('404.html');
+});
 
 
 
