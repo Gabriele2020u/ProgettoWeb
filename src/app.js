@@ -19,8 +19,6 @@ app.set('views', path.join(__dirname, 'html'));
 app.set('view engine', 'ejs');
 app.engine('.html', require('ejs').renderFile);
 
-
-
 ////////////////////////////            ROUTING       //////////////
 app.get('/previsioni', (req, res) => {
   res.render('previsioni.html')
