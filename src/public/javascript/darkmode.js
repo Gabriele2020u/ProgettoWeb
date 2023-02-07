@@ -1,4 +1,3 @@
-
 //funzione di interazione col toggle
 function checkTheme () {
 

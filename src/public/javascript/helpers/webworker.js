@@ -1,5 +1,3 @@
-
-
 const imagesLoader = new Worker('/javascript/helpers/imgwebworker.js');
 const imagesElements = document.querySelectorAll('img[data-src]');
 
